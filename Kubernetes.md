@@ -71,8 +71,6 @@ O Kubernetes lança progressivamente alterações em sua aplicação ou em sua c
 para garantir que ele não mate todas as suas instâncias ao mesmo tempo. 
 Se algo der errado, o Kubernetes reverterá a alteração para você. Aproveite um ecossistema crescente de soluções de implantação.
 
-## Conceitos principais:
-
 
 ## Instalação & Configuração
 
