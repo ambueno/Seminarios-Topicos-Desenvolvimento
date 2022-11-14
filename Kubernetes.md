@@ -148,6 +148,8 @@ Mais informações em https://cloud.google.com/kubernetes-engine
 
   - **AKS**: é gerenciado pelo Microsoft Azure e pode ser implantado facilmente. Essa solução gerenciada do Kubernetes é boa para usuários do Azure porque pode se integrar a outras ferramentas do Azure disponíveis no ecossistema do Azure.
 
+Mais informações em https://azure.microsoft.com/en-us/services/kubernetes-service
+
 #### **5. Kubernetes - The Hard Way:** O método da maneira mais difícil é usado para instalar o Kubernetes do zero. Sugiro este tipo de instalação para todos que desejam aprender todos os componentes do Kubernetes para entender profundamente o Kubernetes. Se você quiser saber o processo de implantação de um cluster e o que acontece entre os componentes do cluster, instale o Kubernetes com esse método pelo menos uma vez.
 
   - **Kelsey Hightower** é quem lançou o método da maneira difícil pela primeira vez, até onde eu sei. Ele explica como implantar o Kubernetes do zero no Google Cloud Platform.
@@ -158,19 +160,8 @@ Mais informações em https://github.com/kelseyhightower/kubernetes-the-hard-way
 
 Mais informações em https://github.com/mmumshad/kubernetes-the-hard-way
 
-Mais informações em https://azure.microsoft.com/en-us/services/kubernetes-service
-
-https://kubernetes.io/docs/tasks/tools/
-
-https://kubernetes.io/docs/setup/production-environment/#production-cluster-setup
-
-https://github.com/kubernetes/kubernetes/blob/master/README.md#to-start-developing-k8s
-
-https://www.freecodecamp.org/news/the-kubernetes-handbook/
-
-https://itnext.io/kubernetes-installation-methods-the-complete-guide-1036c860a2b3
-
-https://instruqt.com/blog/digital-transformations/6-ways-to-run-kubernetes-in-the-cloud/
+### **Instalação minikube**
+https://minikube.sigs.k8s.io/docs/start/
 
 Install my-project with npm
 
@@ -205,15 +196,6 @@ Start the server
   npm run start
 ```
 
-
-## Recursos
-
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
-
-
 ## Getting Started
 
 ```javascript
@@ -227,6 +209,4 @@ function App() {
 
 ## Ferramentas similares
 ## Authors
-
-- [ambueno](https://www.github.com/ambueno)
-
+[ambueno](https://www.github.com/ambueno)
