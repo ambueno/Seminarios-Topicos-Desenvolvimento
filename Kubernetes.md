@@ -74,44 +74,91 @@ Se algo der errado, o Kubernetes reverterá a alteração para você. Aproveite 
 
 ## Instalação & Configuração
 
-- #### Instalação do Kubernetes para desenvolvimento:
-É usado para um único nó ou para uma configuração rápida do Kubernetes. Para fins de desenvolvimento, colocamos tudo em um único nó. Por isso é limitado a um nó.
+#### **1. Instalação de nó único:** Este tipo de instalação é adequado para quem deseja visualizar o Kubernetes ou é adequado para práticas, testes e fins de desenvolvimento. Existem muitas distribuições de Kubernetes de nó único no mercado, mas apresento as mais populares.
 
--> Minikube: É uma implementação leve do Kubernetes que cria um cluster Kubernetes em um único host com um conjunto de pequenos recursos para executar uma pequena implantação do Kubernetes. Ele é destinado a cenários de teste do Kubernetes (criação de pods, serviços, gerenciamento de armazenamento, regras de entrada de rede, etc), mas no ambiente local para o desenvolvedor ou administrador testar. Ele não se destina ao uso em produção, pois executa uma máquina virtual, instala o Docker e, em seguida, implanta os contêineres essenciais do Kubernetes. O Minikube é um Kubernetes local, com foco em facilitar o aprendizado e o desenvolvimento do Kubernetes. Tudo o que você precisa é de um contêiner Docker (ou similarmente compatível) ou um ambiente de máquina virtual, e o Kubernetes está a um único comando: minikube start.
+ - **Minikube**: é uma distribuição Kubernetes de nó único que é lançada oficialmente pela comunidade Kubernetes. A versão mais recente do Kubernetes pode ser executada com o minikube. Juntamente com a instalação do Kubernetes, alguns complementos do Kubernetes podem ser executados facilmente. Com o minikube, o Kubernetes pode ser implantado em sistemas VM, Container ou bare-metal. Vários ambientes de execução de contêiner (Docker, Containerd, CRI-O) também são suportados.
 
--> Docker: Kubernetes com Docker Desktop é para um único nó. Está disponível para Windows, Mac e Linux, sendo utilizado localmente em nossos sistemas. Fazemos isso como um sandbox de desenvolvedor. É conveniente e fácil de instalar e é usado principalmente para fins de teste.
+Mais informações em https://minikube.sigs.k8s.io
 
-- #### Instalação do Kubernetes gerenciado (EKS, AKS, GKE, OKE):
-No Kubernetes gerenciado os nós são gerenciados pelo fornecedor da nuvem ou pela plataforma Kubernetes gerenciada ou pela plataforma que basicamente nos dá a configuração do Kubernetes É quando os provedores terceirizados assumem a responsabilidade por parte ou todo o trabalho necessário para a configuração bem-sucedida e operação de K8s.
+  - **Kind**: é uma distribuição para executar o cluster Kubernetes dentro de contêineres do Docker em seu sistema local. kind significa “Kubernetes in Docker” Esta distribuição é adequada para testes, desenvolvimento local e sistemas de CI. kind é distribuído oficialmente pela comunidade Kubernetes.
 
--> Amazon Elastic Kubernetes Service (EKS): O EKS executa o Kubernetes em várias zonas de disponibilidade da AWS para alta disponibilidade, e a AWS gerencia a infraestrutura completa. O EKS é o melhor lugar para executar o Kubernetes por vários motivos. Primeiro, você pode optar por executar seus clusters EKS usando o AWS Fargate, que é uma computação sem servidor para contêineres. O EKS aplica automaticamente os patches de segurança mais recentes ao plano de controle do cluster.
+Mais informações em https://kind.sigs.k8s.io
 
--> Azure Kubernetes Service (AKS): O Azure oferece várias maneiras de provisionar um cluster – console da Web, linha de comando, gerenciador de recursos do Azure, Terraform. Você pode aproveitar o gerenciador de tráfego do Azure para rotear as solicitações de aplicativos para os data centers mais próximos para uma resposta rápida. Implante e gerencie aplicativos em contêiner com mais facilidade com um serviço Kubernetes totalmente gerenciado. Reúna suas equipes de desenvolvimento e operações em uma única plataforma para criar, entregar e dimensionar aplicativos rapidamente com confiança.
+  - **k3s**: é outra distribuição útil lançada pela Rancher. Ele foi desenvolvido inicialmente para IoT e computação de borda, mas pode ser usado para qualquer outra finalidade. Você pode executar um Kubernetes de nó único ou um cluster com alguns comandos.
 
--> Google Kubernetes Engine (GKE): Como o K8s foi criado pelos engenheiros do Google para orquestração interna de contêineres, faz sentido que o GKE seja uma das plataformas gerenciadas mais avançadas disponíveis. Projetado para uso no Google Cloud, ele também inclui funcionalidade para operação em ambientes híbridos. Ele permite que você transfira microsserviços com alterações mínimas de configuração, crie repositórios de imagens privadas por meio de um construtor de imagens integrado e gerencie autenticação e direitos de acesso por meio de um console integrado.
+Mais informações em https://k3s.io
 
--> Oracle Kubernetes Engine (OKE): O Oracle Cloud Infrastructure Container Engine for Kubernetes é um serviço totalmente gerenciado, escalável e altamente disponível que você pode usar para implantar seus aplicativos em contêiner na nuvem. Use o Container Engine for Kubernetes (OKE) quando sua equipe de desenvolvimento quiser criar, implantar e gerenciar aplicativos nativos da nuvem de maneira confiável.
+  - **k3d**: é um auxiliar para executar k3s no Docker. Ele lança um cluster Kubernetes em sua máquina local como “tipo”. k3d é lançado pela Rancher.
 
+Mais informações em https://github.com/rancher/k3d
 
-- #### Instalação do Kubernetes não gerenciado (baseada no instalador):
-Na instalação não gerenciada do Kubernetes, tudo precisa ser gerenciado pelo desenvolvedor, o que significa que todos os nós, independente de seu tipo,
-são gerenciados pelo desenvolvedor. Ele não é gerenciado por um fornecedor de nuvem, portanto, conhecido como não gerenciado ou baseado em instalador.
+  - **microk8s**: é outra opção de instalação. Não apenas um Kubernetes de nó único, mas um cluster também pode ser implantado usando microk8s. Esta distribuição do Kubernetes é lançada pela Canonical - a empresa que lança o Ubuntu - e está disponível no gerenciador de pacotes rápido. O Kubernetes pode ser implantado com alguns comandos. Juntamente com o Kubernetes, está disponível uma lista de vários complementos que podem ser implantados facilmente.
 
- -> Kubeadm: É uma ferramenta criada para fornecer kubeadm init e kubeadm join como “caminhos rápidos” de práticas recomendadas para a criação de clusters
-Kubernetes. Ele executa as ações necessárias para obter um cluster mínimo viável em funcionamento. Por design, ele se preocupa apenas com a inicialização,
-não com o provisionamento de máquinas. Podemos usar o kubeadm para criar um ambiente Kubernetes de nível de produção.
+Mais informações em https://microk8s.io
 
- -> Kops: O Kubernetes Operations, ou Kops, é um projeto de código aberto usado para configurar clusters do Kubernetes com facilidade e rapidez. É considerada
-a maneira “kubectl” de criar clusters. Kops permite a implantação de clusters Kubernetes altamente disponíveis na AWS.
+#### **2. Instalação manual do cluster:** Esse tipo de instalação é usado para implantar um cluster mínimo viável. Algumas partes da instalação devem ser feitas manualmente. É a maneira preferida de implantar o cluster Kubernetes pela primeira vez.
 
- -> Kubespray: Os clusters do Kubernetes podem ser criados usando várias ferramentas de automação. Kubespray é uma combinação de Kubernetes e Ansible.
-Isso significa que podemos instalar o Kubernetes usando o Ansible. Também podemos implantar clusters usando serviços de computação em nuvem kubespray, como
-EC2 (AWS). O Kubespray oferece flexibilidade de implantação. Ele permite que você implante um cluster rapidamente e personalize todos os aspectos da implementação.
+  - **Kubeadm**: é uma ferramenta que é usada para implantar um cluster por mãos humanas. Ele é usado para inicializar componentes do Kubernetes, não para provisionar máquinas. Antes de inicializar o cluster, algumas ações devem ser feitas manualmente.
 
+Mais informações em https://kubernetes.io/docs/reference/setup-tools/kubeadm
 
-- #### Tudo do zero (Kubernetes The Hard Way):
-É otimizado para aprendizado, o que significa seguir o longo caminho para garantir que você entenda cada tarefa necessária para inicializar um cluster Kubernetes. 
-Sendo indicado para àqueles que planejam dar suporte a um cluster Kubernetes de produção e querem entender como tudo se encaixa, ou seja, não se trata um comando totalmente automatizado para abrir um cluster Kubernetes.
+#### **3. Instalação automática do cluster:** Esse tipo de instalação é feito usando ferramentas de automação, scripts ou instaladores distribuídos pelo provedor. É uma maneira preferencial para aqueles que desejam implantar clusters Kubernetes de nível de produção em um ambiente local ou desejam gerenciar o ciclo de vida do cluster manualmente.
+
+ - **Kubespray**: é uma coleção de playbooks Ansible que são usados para implantar clusters de nível de produção em bare-metal e na nuvem. Juntamente com a instalação, as operações do segundo dia podem ser realizadas com o kubespray. Este instalador é mantido oficialmente pela comunidade Kubernetes. Uma dúzia de complementos estão disponíveis no kubespray e podem ser implantados facilmente junto com o Kubernetes. kubespray é uma das opções de instalação mais adequadas.
+
+Mais informações em https://github.com/kubernetes-sigs/kubespray
+
+  - **Kops**: não apenas gerenciará o ciclo de vida do cluster, mas também fornecerá a infraestrutura de nuvem necessária. A implantação na AWS é suportada oficialmente, a implantação em outros provedores de nuvem está disponível, mas em estado alfa e beta.
+
+Mais informações em https://kops.sigs.k8s.io
+
+  - **RKE**: é um Kubernetes distribuído do Rancher que pode implantar clusters Kubernetes de nível de produção sobre contêineres do Docker. O gerenciamento de clusters do Kubernetes é feito facilmente com o RKE. Se você deseja usar a plataforma Rancher, deve selecionar esta distribuição.
+
+Mais informações em https://github.com/rancher/rke
+
+  - **Charmed Kubernetes**: é a maneira canônica de implantar clusters Kubernetes com Juju. É adequado para executar o Kubernetes em ambientes multinuvem e bare-metal. Se você procura uma distribuição qualificada do Kubernetes que possa ser implantada no OpenStack, este instalador é para você.
+
+Mais informações em https://ubuntu.com/kubernetes
+
+  - **KubeSphere**: não é apenas uma distribuição Kubernetes, é também uma plataforma para criar uma solução em nuvem baseada em Kubernetes. Um grande número de ferramentas, complementos etc. podem ser implantados usando o KubeSphere junto com o Kubernetes. Essa plataforma também pode ser implantada no cluster Kubernetes existente.
+
+Mais informações em https://kubesphere.io
+
+  - **Kubermatic**: é uma plataforma Kubernetes assim como o Rancher. Você pode implantar e gerenciar clusters do Kubernetes em nuvens e no local. A conexão entre o cluster mestre/semente e os clusters downstream é tratada pelo OpenVPN.
+
+Mais informações em https://github.com/kubermatic/kubermatic
+
+  - **KubeOne**: é uma ferramenta para provisionar a infraestrutura necessária e implantar o Kubernetes em alguns provedores. Ele pode ser facilmente integrado ao Terraform e Kubermatic.
+
+Mais informações em https://github.com/kubermatic/kubeone
+
+#### **4. Clusters gerenciados:** O ciclo de vida dos clusters é gerenciado pelos provedores. Nesse tipo de instalação, um cluster de nível de produção pode ser implantado com ações mínimas do usuário. Os provedores são responsáveis por gerenciar todo o cluster, bem como a infraestrutura subjacente. Devido à facilidade de instalação e gerenciamento, este método é sugerido a qualquer pessoa. Outro benefício de usar o Kubernetes gerenciado é o acesso aos recursos da nuvem. Alguns provedores gerenciados do Kubernetes fornecem um conjunto de recursos úteis que podem não estar disponíveis em soluções locais ou bare-metal.
+
+  - **Magnum**: é uma solução OpenStack para instalar Kubernetes gerenciados e outras ferramentas de orquestração no ecossistema OpenStack. Com o Magnum, os clientes da nuvem podem executar clusters do Kubernetes facilmente. Esse método também pode ser categorizado em Métodos de instalação automatizada de cluster. Decidi apresentá-lo aqui porque ele também suporta os incríveis recursos de nuvem. Além disso, os provedores de nuvem baseados em OpenStack podem fornecer esse método para seus clientes instalarem clusters Kubernetes gerenciados.
+
+Mais informações em https://docs.openstack.org/magnum/latest
+
+  - **EKS**: significa Elastic Kubernetes Service é a solução da Amazon para fornecer cluster Kubernetes gerenciado. O EKS pode ser facilmente integrado a outros serviços da Amazon. Uma ferramenta de linha de comando, eksctl, é usada para executar um cluster Kubernetes de produção em alguns minutos.
+
+Mais informações em https://aws.amazon.com/eks
+
+  - **GKE**: é uma versão do Kubernetes do Google Cloud, assim como o AWS EKS. O GKE oferece um modo de operação especial chamado Autopilot, que reduz os custos de gerenciamento e otimiza os clusters para produção.
+
+Mais informações em https://cloud.google.com/kubernetes-engine
+
+  - **AKS**: é gerenciado pelo Microsoft Azure e pode ser implantado facilmente. Essa solução gerenciada do Kubernetes é boa para usuários do Azure porque pode se integrar a outras ferramentas do Azure disponíveis no ecossistema do Azure.
+
+#### **5. Kubernetes - The Hard Way:** O método da maneira mais difícil é usado para instalar o Kubernetes do zero. Sugiro este tipo de instalação para todos que desejam aprender todos os componentes do Kubernetes para entender profundamente o Kubernetes. Se você quiser saber o processo de implantação de um cluster e o que acontece entre os componentes do cluster, instale o Kubernetes com esse método pelo menos uma vez.
+
+  - **Kelsey Hightower** é quem lançou o método da maneira difícil pela primeira vez, até onde eu sei. Ele explica como implantar o Kubernetes do zero no Google Cloud Platform.
+
+Mais informações em https://github.com/kelseyhightower/kubernetes-the-hard-way
+
+  - **Mumshad Mannambeth** bifurca o método explicado anteriormente e mudou isso para implantar em máquinas locais usando o Vagrant. Esta versão da maneira mais difícil não é atualizada para o Kubernetes mais recente.
+
+Mais informações em https://github.com/mmumshad/kubernetes-the-hard-way
+
+Mais informações em https://azure.microsoft.com/en-us/services/kubernetes-service
 
 https://kubernetes.io/docs/tasks/tools/
 
