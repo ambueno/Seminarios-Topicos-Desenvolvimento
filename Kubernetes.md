@@ -81,8 +81,19 @@ Se algo der errado, o Kubernetes reverterá a alteração para você. Aproveite 
 
 -> Docker: Kubernetes com Docker Desktop é para um único nó. Está disponível para Windows, Mac e Linux, sendo utilizado localmente em nossos sistemas. Fazemos isso como um sandbox de desenvolvedor. É conveniente e fácil de instalar e é usado principalmente para fins de teste.
 
+- #### Instalação do Kubernetes gerenciado (EKS, AKS, GKE, OKE):
+No Kubernetes gerenciado os nós são gerenciados pelo fornecedor da nuvem ou pela plataforma Kubernetes gerenciada ou pela plataforma que basicamente nos dá a configuração do Kubernetes É quando os provedores terceirizados assumem a responsabilidade por parte ou todo o trabalho necessário para a configuração bem-sucedida e operação de K8s.
 
-- #### Instalação não gerenciada do Kubernetes (baseada no instalador):
+-> Amazon Elastic Kubernetes Service (EKS): O EKS executa o Kubernetes em várias zonas de disponibilidade da AWS para alta disponibilidade, e a AWS gerencia a infraestrutura completa. O EKS é o melhor lugar para executar o Kubernetes por vários motivos. Primeiro, você pode optar por executar seus clusters EKS usando o AWS Fargate, que é uma computação sem servidor para contêineres. O EKS aplica automaticamente os patches de segurança mais recentes ao plano de controle do cluster.
+
+-> Azure Kubernetes Service (AKS): O Azure oferece várias maneiras de provisionar um cluster – console da Web, linha de comando, gerenciador de recursos do Azure, Terraform. Você pode aproveitar o gerenciador de tráfego do Azure para rotear as solicitações de aplicativos para os data centers mais próximos para uma resposta rápida. Implante e gerencie aplicativos em contêiner com mais facilidade com um serviço Kubernetes totalmente gerenciado. Reúna suas equipes de desenvolvimento e operações em uma única plataforma para criar, entregar e dimensionar aplicativos rapidamente com confiança.
+
+-> Google Kubernetes Engine (GKE): Como o K8s foi criado pelos engenheiros do Google para orquestração interna de contêineres, faz sentido que o GKE seja uma das plataformas gerenciadas mais avançadas disponíveis. Projetado para uso no Google Cloud, ele também inclui funcionalidade para operação em ambientes híbridos. Ele permite que você transfira microsserviços com alterações mínimas de configuração, crie repositórios de imagens privadas por meio de um construtor de imagens integrado e gerencie autenticação e direitos de acesso por meio de um console integrado.
+
+-> Oracle Kubernetes Engine (OKE): O Oracle Cloud Infrastructure Container Engine for Kubernetes é um serviço totalmente gerenciado, escalável e altamente disponível que você pode usar para implantar seus aplicativos em contêiner na nuvem. Use o Container Engine for Kubernetes (OKE) quando sua equipe de desenvolvimento quiser criar, implantar e gerenciar aplicativos nativos da nuvem de maneira confiável.
+
+
+- #### Instalação do Kubernetes não gerenciado (baseada no instalador):
 Na instalação não gerenciada do Kubernetes, tudo precisa ser gerenciado pelo desenvolvedor, o que significa que todos os nós, independente de seu tipo,
 são gerenciados pelo desenvolvedor. Ele não é gerenciado por um fornecedor de nuvem, portanto, conhecido como não gerenciado ou baseado em instalador.
 
@@ -101,8 +112,6 @@ EC2 (AWS). O Kubespray oferece flexibilidade de implantação. Ele permite que v
 - #### Tudo do zero (Kubernetes The Hard Way):
 É otimizado para aprendizado, o que significa seguir o longo caminho para garantir que você entenda cada tarefa necessária para inicializar um cluster Kubernetes. 
 Sendo indicado para àqueles que planejam dar suporte a um cluster Kubernetes de produção e querem entender como tudo se encaixa, ou seja, não se trata um comando totalmente automatizado para abrir um cluster Kubernetes.
-
-
 
 https://kubernetes.io/docs/tasks/tools/
 
