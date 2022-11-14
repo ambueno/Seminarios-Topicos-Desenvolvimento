@@ -74,6 +74,36 @@ Se algo der errado, o Kubernetes reverterá a alteração para você. Aproveite 
 
 ## Instalação & Configuração
 
+- #### Instalação do Kubernetes para desenvolvimento:
+É usado para um único nó ou para uma configuração rápida do Kubernetes. Para fins de desenvolvimento, colocamos tudo em um único nó. Por isso é limitado a um nó.
+
+-> Minikube: É uma implementação leve do Kubernetes que cria um cluster Kubernetes em um único host com um conjunto de pequenos recursos para executar uma pequena implantação do Kubernetes. Ele é destinado a cenários de teste do Kubernetes (criação de pods, serviços, gerenciamento de armazenamento, regras de entrada de rede, etc), mas no ambiente local para o desenvolvedor ou administrador testar. Ele não se destina ao uso em produção, pois executa uma máquina virtual, instala o Docker e, em seguida, implanta os contêineres essenciais do Kubernetes. O Minikube é um Kubernetes local, com foco em facilitar o aprendizado e o desenvolvimento do Kubernetes. Tudo o que você precisa é de um contêiner Docker (ou similarmente compatível) ou um ambiente de máquina virtual, e o Kubernetes está a um único comando: minikube start.
+
+-> Docker: Kubernetes com Docker Desktop é para um único nó. Está disponível para Windows, Mac e Linux, sendo utilizado localmente em nossos sistemas. Fazemos isso como um sandbox de desenvolvedor. É conveniente e fácil de instalar e é usado principalmente para fins de teste.
+
+
+- #### Instalação não gerenciada do Kubernetes (baseada no instalador):
+Na instalação não gerenciada do Kubernetes, tudo precisa ser gerenciado pelo desenvolvedor, o que significa que todos os nós, independente de seu tipo,
+são gerenciados pelo desenvolvedor. Ele não é gerenciado por um fornecedor de nuvem, portanto, conhecido como não gerenciado ou baseado em instalador.
+
+ -> Kubeadm: É uma ferramenta criada para fornecer kubeadm init e kubeadm join como “caminhos rápidos” de práticas recomendadas para a criação de clusters
+Kubernetes. Ele executa as ações necessárias para obter um cluster mínimo viável em funcionamento. Por design, ele se preocupa apenas com a inicialização,
+não com o provisionamento de máquinas. Podemos usar o kubeadm para criar um ambiente Kubernetes de nível de produção.
+
+ -> Kops: O Kubernetes Operations, ou Kops, é um projeto de código aberto usado para configurar clusters do Kubernetes com facilidade e rapidez. É considerada
+a maneira “kubectl” de criar clusters. Kops permite a implantação de clusters Kubernetes altamente disponíveis na AWS.
+
+ -> Kubespray: Os clusters do Kubernetes podem ser criados usando várias ferramentas de automação. Kubespray é uma combinação de Kubernetes e Ansible.
+Isso significa que podemos instalar o Kubernetes usando o Ansible. Também podemos implantar clusters usando serviços de computação em nuvem kubespray, como
+EC2 (AWS). O Kubespray oferece flexibilidade de implantação. Ele permite que você implante um cluster rapidamente e personalize todos os aspectos da implementação.
+
+
+- #### Tudo do zero (Kubernetes The Hard Way):
+É otimizado para aprendizado, o que significa seguir o longo caminho para garantir que você entenda cada tarefa necessária para inicializar um cluster Kubernetes. 
+Sendo indicado para àqueles que planejam dar suporte a um cluster Kubernetes de produção e querem entender como tudo se encaixa, ou seja, não se trata um comando totalmente automatizado para abrir um cluster Kubernetes.
+
+
+
 https://kubernetes.io/docs/tasks/tools/
 
 https://kubernetes.io/docs/setup/production-environment/#production-cluster-setup
