@@ -4,16 +4,38 @@
   </a>
 </h1>
 
+
+# Sumário
+- [Introdução](#introducao)
+  - [O que é?](#introducao1)
+  - [Como funciona?](#introducao2)
+  - [Contextualização histórica](#introducao3)
+  - [Recursos principais](#introducao4)
+  - [Conceitos fundamentais](#introducao5)
+- [Instalação & Configuração](#instalacao)
+- [Getting Started](#gettingStarted)
+- [Ferramentas similares](#similarTools)
+- [Referências](#references)
+
+<a name="introducao"/>
+
 # Introdução
+
+<a name="introducao1"/>
+
 ## O que é? 
 Kubernetes (K8s) é um sistema open-source para automatizar a implantação (deployment),
 o dimensionamento (scaling) e o gerenciamento de aplicativos em containers. De modo mais detalhado, é uma plataforma portátil,
 extensível e de código aberto para gerenciar cargas de trabalho e serviços em contêineres, que facilita tanto a configuração 
 declarativa quanto a automação.
 
+<a name="introducao2"/>
+
 ## Como funciona? 
 Se baseia no agrupamento de containers que compõem uma aplicação em unidades lógicas para 
 facilitar o gerenciamento e a descoberta dos serviços.
+
+<a name="introducao3"/>
 
 ## Contextualização histórica
 - #### Era da implantação tradicional: 
@@ -28,6 +50,8 @@ Como solução, a virtualização foi introduzida. Esse modelo permite que você
 
 - #### Era da implantação em contêineres: 
 Contêineres são semelhantes às VMs, mas têm propriedades de isolamento flexibilizados para compartilhar o sistema operacional (SO) entre as aplicações. Portanto, os contêineres são considerados leves. Semelhante a uma VM, um contêiner tem seu próprio sistema de arquivos, compartilhamento de CPU, memória, espaço de processo e muito mais. Como eles estão separados da infraestrutura subjacente, eles são portáveis entre nuvens e distribuições de sistema operacional.
+
+<a name="introducao4"/>
 
 ## Recursos principais:
 
@@ -50,6 +74,8 @@ não os anuncia aos clientes até que estejam prontos para serem utilizados.
 - **Execução em lote:** além dos serviços, o Kubernetes pode gerenciar suas cargas de trabalho de lote e CI, substituindo contêineres que falham, se desejado.
 - **Rollouts e rollbacks automatizados:** o Kubernetes lança progressivamente alterações em sua aplicação ou em sua configuração, enquanto monitora a integridade da aplicação para garantir que ele não mate todas as suas instâncias ao mesmo tempo. Se algo der errado, o Kubernetes reverterá a alteração para você.
 
+<a name="introducao5"/>
+         
 ## Conceitos fundamentais:
 - **Cluster:** um conjunto de servidores de processamento, chamados nós, que executam aplicações containerizadas. Todo cluster possui ao menos um servidor de processamento (worker node);
 - **Contêiner:** uma imagem executável leve e portável que contém software e todas as suas dependências;
@@ -61,6 +87,7 @@ não os anuncia aos clientes até que estejam prontos para serem utilizados.
 - **Node:** um Node ou Nó é uma máquina de trabalho no Kubernetes;
 - **Pod:** o menor e mais simples objeto Kubernetes. Um Pod representa um conjunto de contêineres em execução no seu cluster.
 
+<a name="instalacao"/>
 
 ## Instalação & Configuração
 
@@ -68,45 +95,45 @@ não os anuncia aos clientes até que estejam prontos para serem utilizados.
 
  - **Minikube**: é uma distribuição Kubernetes de nó único que é lançada oficialmente pela comunidade Kubernetes. A versão mais recente do Kubernetes pode ser executada com o minikube. Juntamente com a instalação do Kubernetes, alguns complementos do Kubernetes podem ser executados facilmente. Com o minikube, o Kubernetes pode ser implantado em sistemas VM, Container ou bare-metal. Vários ambientes de execução de contêiner (Docker, Containerd, CRI-O) também são suportados. Mais informações em https://minikube.sigs.k8s.io
 
-  - **Kind**: é uma distribuição para executar o cluster Kubernetes dentro de contêineres do Docker em seu sistema local. kind significa “Kubernetes in Docker” Esta distribuição é adequada para testes, desenvolvimento local e sistemas de CI. kind é distribuído oficialmente pela comunidade Kubernetes. Mais informações em https://kind.sigs.k8s.io
+  - **Kind**: é uma distribuição para executar o cluster Kubernetes dentro de contêineres do Docker em seu sistema local. Significa “Kubernetes in Docker” Esta distribuição é adequada para testes, desenvolvimento local e sistemas de CI. É distribuído oficialmente pela comunidade Kubernetes. Mais informações em https://kind.sigs.k8s.io
 
-  - **k3s**: é outra distribuição útil lançada pela Rancher. Ele foi desenvolvido inicialmente para IoT e computação de borda, mas pode ser usado para qualquer outra finalidade. Você pode executar um Kubernetes de nó único ou um cluster com alguns comandos. Mais informações em https://k3s.io
+  - **k3s**: é outra distribuição útil lançada pela Rancher. Ele foi desenvolvido inicialmente para IoT, mas pode ser usado para qualquer outra finalidade. Pode ser executado um Kubernetes de nó único ou um cluster com alguns comandos. Mais informações em https://k3s.io
 
-  - **k3d**: é um auxiliar para executar k3s no Docker. Ele lança um cluster Kubernetes em sua máquina local como “tipo”. k3d é lançado pela Rancher. Mais informações em https://github.com/rancher/k3d
+  - **k3d**: é um auxiliar para executar k3s no Docker. Lança um cluster Kubernetes em sua máquina local. Mais informações em https://github.com/rancher/k3d
 
-  - **microk8s**: é outra opção de instalação. Não apenas um Kubernetes de nó único, mas um cluster também pode ser implantado usando microk8s. Esta distribuição do Kubernetes é lançada pela Canonical - a empresa que lança o Ubuntu - e está disponível no gerenciador de pacotes rápido. O Kubernetes pode ser implantado com alguns comandos. Juntamente com o Kubernetes, está disponível uma lista de vários complementos que podem ser implantados facilmente. Mais informações em https://microk8s.io
+  - **microk8s**: é outra opção de instalação. Não apenas um Kubernetes de nó único, mas um cluster também pode ser implantado usando microk8s. Esta distribuição do Kubernetes pertence à Canonical - a empresa do Ubuntu - e está disponível no gerenciador de pacotes. O Kubernetes pode ser implantado com alguns comandos. Juntamente com o Kubernetes, está disponível uma lista de vários complementos que podem ser implantados facilmente. Mais informações em https://microk8s.io
 
 #### **2. Instalação manual do cluster:** Esse tipo de instalação é usado para implantar um cluster mínimo viável. Algumas partes da instalação devem ser feitas manualmente. É a maneira preferida de implantar o cluster Kubernetes pela primeira vez.
 
-  - **Kubeadm**: é uma ferramenta que é usada para implantar um cluster por mãos humanas. Ele é usado para inicializar componentes do Kubernetes, não para provisionar máquinas. Antes de inicializar o cluster, algumas ações devem ser feitas manualmente. Mais informações em https://kubernetes.io/docs/reference/setup-tools/kubeadm
+  - **Kubeadm**: é uma ferramenta que é usada para implantar um cluster manualmente. Ele é usado para inicializar componentes do Kubernetes, não para provisionar máquinas. Antes de inicializar o cluster, algumas ações devem ser feitas também manualmente. Mais informações em https://kubernetes.io/docs/reference/setup-tools/kubeadm
 
 #### **3. Instalação automática do cluster:** Esse tipo de instalação é feito usando ferramentas de automação, scripts ou instaladores distribuídos pelo provedor. É uma maneira preferencial para aqueles que desejam implantar clusters Kubernetes de nível de produção em um ambiente local ou desejam gerenciar o ciclo de vida do cluster manualmente.
 
- - **Kubespray**: é uma coleção de playbooks Ansible que são usados para implantar clusters de nível de produção em bare-metal e na nuvem. Juntamente com a instalação, as operações do segundo dia podem ser realizadas com o kubespray. Este instalador é mantido oficialmente pela comunidade Kubernetes. Uma dúzia de complementos estão disponíveis no kubespray e podem ser implantados facilmente junto com o Kubernetes. kubespray é uma das opções de instalação mais adequadas. Mais informações em https://github.com/kubernetes-sigs/kubespray
+ - **Kubespray**: são usados para implantar clusters de nível de produção em bare-metal e na nuvem. Juntamente com a instalação, as operações do segundo dia podem ser realizadas com o kubespray. Este instalador é mantido oficialmente pela comunidade Kubernetes. Alguns complementos estão disponíveis no kubespray e podem ser implantados facilmente junto com o Kubernetes. Mais informações em https://github.com/kubernetes-sigs/kubespray
 
   - **Kops**: não apenas gerenciará o ciclo de vida do cluster, mas também fornecerá a infraestrutura de nuvem necessária. A implantação na AWS é suportada oficialmente, a implantação em outros provedores de nuvem está disponível, mas em estado alfa e beta. Mais informações em https://kops.sigs.k8s.io
 
-  - **RKE**: é um Kubernetes distribuído do Rancher que pode implantar clusters Kubernetes de nível de produção sobre contêineres do Docker. O gerenciamento de clusters do Kubernetes é feito facilmente com o RKE. Se você deseja usar a plataforma Rancher, deve selecionar esta distribuição. Mais informações em https://github.com/rancher/rke
+  - **RKE**: é um Kubernetes distribuído do Rancher que pode implantar clusters Kubernetes de nível de produção sobre contêineres do Docker. O gerenciamento de clusters do Kubernetes é feito facilmente com o RKE. Mais informações em https://github.com/rancher/rke
 
-  - **Charmed Kubernetes**: é a maneira canônica de implantar clusters Kubernetes com Juju. É adequado para executar o Kubernetes em ambientes multinuvem e bare-metal. Se você procura uma distribuição qualificada do Kubernetes que possa ser implantada no OpenStack, este instalador é para você. Mais informações em https://ubuntu.com/kubernetes
+  - **Charmed Kubernetes**: é a maneira canônica de implantar clusters Kubernetes com Juju. É adequado para executar o Kubernetes em ambientes multinuvem e bare-metal. Uma distribuição qualificada do Kubernetes que possa ser implantada no OpenStack. Mais informações em https://ubuntu.com/kubernetes
 
   - **KubeSphere**: não é apenas uma distribuição Kubernetes, é também uma plataforma para criar uma solução em nuvem baseada em Kubernetes. Um grande número de ferramentas, complementos etc. podem ser implantados usando o KubeSphere junto com o Kubernetes. Essa plataforma também pode ser implantada no cluster Kubernetes existente. Mais informações em https://kubesphere.io
 
-  - **Kubermatic**: é uma plataforma Kubernetes assim como o Rancher. Você pode implantar e gerenciar clusters do Kubernetes em nuvens e no local. A conexão entre o cluster mestre/semente e os clusters downstream é tratada pelo OpenVPN. Mais informações em https://github.com/kubermatic/kubermatic
+  - **Kubermatic**: pode implantar e gerenciar clusters do Kubernetes em nuvens e no local. A conexão entre o cluster mestre e os clusters downstream é tratada pelo OpenVPN. Mais informações em https://github.com/kubermatic/kubermatic
 
   - **KubeOne**: é uma ferramenta para provisionar a infraestrutura necessária e implantar o Kubernetes em alguns provedores. Ele pode ser facilmente integrado ao Terraform e Kubermatic. Mais informações em https://github.com/kubermatic/kubeone
 
 #### **4. Clusters gerenciados:** O ciclo de vida dos clusters é gerenciado pelos provedores. Nesse tipo de instalação, um cluster de nível de produção pode ser implantado com ações mínimas do usuário. Os provedores são responsáveis por gerenciar todo o cluster, bem como a infraestrutura subjacente. Devido à facilidade de instalação e gerenciamento, este método é sugerido a qualquer pessoa. Outro benefício de usar o Kubernetes gerenciado é o acesso aos recursos da nuvem. Alguns provedores gerenciados do Kubernetes fornecem um conjunto de recursos úteis que podem não estar disponíveis em soluções locais ou bare-metal.
 
-  - **Magnum**: é uma solução OpenStack para instalar Kubernetes gerenciados e outras ferramentas de orquestração no ecossistema OpenStack. Com o Magnum, os clientes da nuvem podem executar clusters do Kubernetes facilmente. Esse método também pode ser categorizado em Métodos de instalação automatizada de cluster. Decidi apresentá-lo aqui porque ele também suporta os incríveis recursos de nuvem. Além disso, os provedores de nuvem baseados em OpenStack podem fornecer esse método para seus clientes instalarem clusters Kubernetes gerenciados. Mais informações em https://docs.openstack.org/magnum/latest
+  - **Magnum**: é uma solução OpenStack para instalar Kubernetes gerenciados e outras ferramentas de orquestração no ecossistema OpenStack. Com o Magnum, os clientes da nuvem podem executar clusters do Kubernetes facilmente. Além disso, os provedores de nuvem baseados em OpenStack podem fornecer esse método para seus clientes instalarem clusters Kubernetes gerenciados. Mais informações em https://docs.openstack.org/magnum/latest
 
-  - **EKS**: significa Elastic Kubernetes Service é a solução da Amazon para fornecer cluster Kubernetes gerenciado. O EKS pode ser facilmente integrado a outros serviços da Amazon. Uma ferramenta de linha de comando, eksctl, é usada para executar um cluster Kubernetes de produção em alguns minutos. Mais informações em https://aws.amazon.com/eks
+  - **EKS**: significa Elastic Kubernetes Service é a solução da Amazon para fornecer clusters Kubernetes gerenciados. O EKS pode ser facilmente integrado a outros serviços da Amazon. A ferramenta de linha de comando, eksctl, é usada para executar um cluster Kubernetes de produção em alguns minutos. Mais informações em https://aws.amazon.com/eks
 
-  - **GKE**: é uma versão do Kubernetes do Google Cloud, assim como o AWS EKS. O GKE oferece um modo de operação especial chamado Autopilot, que reduz os custos de gerenciamento e otimiza os clusters para produção. Mais informações em https://cloud.google.com/kubernetes-engine
+  - **GKE**: é uma versão do Kubernetes do Google Cloud O GKE oferece um modo de operação especial chamado Autopilot, que reduz os custos de gerenciamento e otimiza os clusters para produção. Mais informações em https://cloud.google.com/kubernetes-engine
 
   - **AKS**: é gerenciado pelo Microsoft Azure e pode ser implantado facilmente. Essa solução gerenciada do Kubernetes é boa para usuários do Azure porque pode se integrar a outras ferramentas do Azure disponíveis no ecossistema do Azure. Mais informações em https://azure.microsoft.com/en-us/services/kubernetes-service
 
-#### **5. Kubernetes - The Hard Way:** O método da maneira mais difícil é usado para instalar o Kubernetes do zero. Sugiro este tipo de instalação para todos que desejam aprender todos os componentes do Kubernetes para entender profundamente o Kubernetes. Se você quiser saber o processo de implantação de um cluster e o que acontece entre os componentes do cluster, instale o Kubernetes com esse método pelo menos uma vez.
+#### **5. Kubernetes - The Hard Way:** O método mais difícil é instalar o Kubernetes do zero. Se você quiser saber o processo de implantação de um cluster e o que acontece entre os componentes do cluster, instale o Kubernetes com esse método.
 
   - **Kelsey Hightower:** explica como implantar o Kubernetes do zero no Google Cloud Platform. Mais informações em https://github.com/kelseyhightower/kubernetes-the-hard-way
 
@@ -237,16 +264,356 @@ minikube start -p aged --kubernetes-version=v1.16.1
 minikube delete --all
 ```
 
+<a name="gettingStarted"/>
+
 ## Getting Started
 
-```javascript
-import Component from 'my-project'
+### Iniciando o cluster
 
-function App() {
-  return <Component />
+Inicie o cluster executando o comando:
+```bash
+minikube start
+```
+
+### Detalhes do cluster
+
+Para ver os detalhes do cluster execute:
+```bash
+kubectl cluster-info
+```
+
+### Básico do Kubectl
+Para visualizar os nós no cluster execute:
+```bash
+kubectl get nodes
+```
+
+### Implantando a aplicação
+
+Para implantar uma aplicação no Kubernetes utilizamos o comando kubectl create deployment. Precisamos fornecer o nome da implantação e o local da imagem da aplicação (inclua o URL completo do repositório para imagens hospedadas fora do hub Docker).
+```bash
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+```
+Esse comando procurou um nó adequado onde uma instância do aplicativo poderia ser executada (temos apenas 1 nó disponível), programou o aplicativo para ser executado nesse nó e configurou o cluster para reprogramar a instância em um novo nó quando necessário.
+
+Para listar suas implantações execute:
+```bash
+kubectl get deployments
+```
+
+### Visualizando a aplicação
+
+Os pods executados dentro do Kubernetes são executados em uma rede privada e isolada. Por padrão, eles são visíveis de outros pods e serviços dentro do mesmo cluster kubernetes, mas não fora dessa rede. Quando usamos o kubectl, estamos interagindo por meio de um terminal de API para nos comunicarmos com nosso aplicativo.
+O comando kubectl pode criar um proxy que encaminhará as comunicações para a rede privada em todo o cluster. O proxy pode ser encerrado pressionando control-C e não mostrará nenhuma saída enquanto estiver em execução.
+
+Abra uma segunda janela de terminal para executar o proxy:
+```bash
+echo -e "\n\n\n\e[92mIniciando o Proxy. Depois de iniciá-lo, ele não emitirá uma resposta. Por favor, clique na primeira guia do Terminal\n";
+kubectl proxy
+```
+Agora há uma conexão entre o host (o terminal online) e o cluster Kubernetes. O proxy permite o acesso direto à API a partir desses terminais.
+
+É possível ver todas essas APIs hospedadas por meio do endpoint do proxy. Por exemplo, para consultar a versão diretamente pela API usando o comando curl:
+```bash
+curl http://localhost:8001/version
+```
+Exemplo de resposta:
+```json
+{
+  "major": "1",
+  "minor": "20",
+  "gitVersion": "v1.20.2",
+  "gitCommit": "faecb196815e248d3ecfb03c680a4507229c2a56",
+  "gitTreeState": "clean",
+  "buildDate": "2021-01-13T13:20:00Z",
+  "goVersion": "go1.15.5",
+  "compiler": "gc",
+  "platform": "linux/amd64"
 }
 ```
 
+>Obs: Verifique a parte superior do terminal. O proxy foi executado em uma nova aba (Terminal 2), e os comandos recentes foram executados na aba original (Terminal 1). O proxy ainda é executado na segunda guia e isso permitiu que o comando curl funcionasse usando localhost:8001.
+
+Se a porta 8001 não estiver acessível, verifique se o proxy kubectl iniciado está em execução. O servidor da API criará automaticamente um endpoint para cada pod, com base no nome do pod, que também pode ser acessado por meio do proxy.
+
+Para isso, pegue o nome do Pod, e armazene-o em uma variável de ambiente (POD_NAME no exemplo):
+
+```bash
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Nome pod: $POD_NAME
+````
+
+Para acessar o pod por meio da API execute:
+
+```bash
+curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/
+```
+
+### Verificando as configurações da aplicação
+
+Para ver quais contêineres estão dentro desse pod, quais imagens são usadas para criar esses contêineres e detalhes sobre o container do Pod - como endereço IP, as portas utilizadas e uma lista de eventos relacionados ao ciclo de vida do Pod - execute:
+ ```bash
+kubectl describe pods
+```
+>Obs: o comando describe pode ser usado para obter informações detalhadas sobre a maioria das primitivas do kubernetes: node, pods, deploys. A saída de descrição é projetada para ser legível por humanos, não para ser usada em scripts.
+
+### Visualizando os logs de um contêiner
+
+Para acessar os logs de um contêiner execute:
+```bash
+kubectl logs $POD_NAME
+```
+>Obs: Caso esteja rodando mais de um contêiner dentro do pod é necessário especificar o nome do contêiner.
+
+### Executando comandos no contêiner
+
+É possível executar comandos diretamente no contêiner assim que o pod estiver funcionando. Para isso, use o comando exec e o nome do Pod como parâmetro. 
+Para listar as variáveis de ambiente execute:
+
+```bash
+kubectl exec $POD_NAME -- env
+```
+
+Para iniciar uma sessão bash no contêiner do pod execute:
+```bash
+kubectl exec -ti $POD_NAME -- bash
+```
+Dentro do console aberto no contêiner pode executar os comando conforme o necessário para rodar a aplicação, nesse exemplo, será executada uma aplicação NodeJS. O código-fonte do aplicativo está no arquivo server.js:
+```bash
+cat server.js
+````
+
+Para verificar se a aplicação está funcionando execute um comando curl:
+```bash
+curl localhost:8080
+```
+>Obs: aqui foi usado localhost porque o comando foi executado dentro do NodeJS Pod. Se não conseguir se conectar a localhost:8080, verifique se você executou o comando kubectl exec e está iniciando o comando de dentro do pod.
+
+Para fechar a conexão do contêiner execute:
+```bash
+exit
+```
+
+### Criando um novo serviço
+Para listar os serviços atuais do cluster execute:
+```bash
+kubectl get services
+```
+Um serviço chamado kubernetes é criado por padrão quando o minikube inicia o cluster. Para criar um novo serviço e expô-lo ao tráfego externo, use o comando de exposição com NodePort como parâmetro (o minikube ainda não suporta a opção LoadBalancer).
+```bash
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+```
+
+Agora há um serviço em execução chamado kubernetes-bootcamp. É possível observar que o serviço recebeu um IP de cluster exclusivo, uma porta interna e um IP externo (o IP do nó). Para descobrir qual porta foi aberta externamente (pela opção NodePort) basta executar o comando describe service ensinado anteriormente:
+```bash
+kubectl describe services/kubernetes-bootcamp
+```
+
+Crie uma variável de ambiente (NODE_PORT no exemplo) que tenha o valor da porta do nó atribuído:
+```bash
+export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+echo NODE_PORT=$NODE_PORT
+```
+
+Para testar se o aplicativo está exposto fora do cluster usando curl, o IP do Node e a porta exposta externamente execute:
+```bash
+curl $(minikube ip):$NODE_PORT
+```
+
+### Usando labels
+O Deployment criou automaticamente um label para o Pod. Com o comando describe deploy você pode ver o nome do label:
+```bash
+kubectl describe deploy
+```
+Use esse label para consultar a lista de pods. Execute o comando kubectl get pods com -l como parâmetro, seguido pelos valores do label:
+```bash
+kubectl get pods -l app=kubernetes-bootcamp
+```
+
+Pode fazer o mesmo para listar os serviços existentes:
+```bash
+kubectl get services -l app=kubernetes-bootcamp
+```
+
+Obtenha o nome do Pod e armazene-o em uma variável de ambiente (POD_NAME no exemplo):
+```bash
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Nome pod: $POD_NAME
+```
+
+Para aplicar um novo label usamos o comando label seguido do tipo de objeto, nome do objeto e o novo label:
+```bash
+kubectl label pods $POD_NAME versão=v1
+```
+
+Desse modo, aplicará um novo rótlabelulo ao pod e podendo ser verificado com o comando describe pod:
+```bash
+kubectl describe pods $POD_NAME
+```
+
+É possível ver que o label está anexado ao Pod. Diante disso, pode-se consultar a lista de pods usando o novo label:
+```bash
+kubectl get pods -l versão=v1
+```
+
+### Excluindo serviços
+
+Para excluir serviços, você pode usar o comando delete service. Os labels também podem ser usados aqui:
+```bash
+kubectl delete service -l app=kubernetes-bootcamp
+```
+
+Confirme se o serviço foi desativado:
+```bash
+kubectl obter serviços
+```
+
+Para confirmar que a rota não está mais exposta, dê um curl no IP e porta expostos anteriormente:
+```bash
+curl $(minikube ip):$NODE_PORT
+```
+
+Para confirmar se o aplicativo ainda está em execução dê um curl dentro do pod:
+```bash
+kubectl exec -ti $POD_NAME -- curl localhost:8080
+```
+
+No último caso é esperado que a aplicação ainda esteja ativa. Isso ocorre porque a implantação está gerenciando a aplicação. Para desligá-la, exclua o Deployment.
+
+### Escalando um deploy
+
+Para listar suas implantações, use o comando get deploys: 
+```bash
+kubectl get deploys
+```
+A saída deve ser semelhante a:
+
+```bash
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   1/1     1            1           11m
+```
+NAME: lista os nomes das implantações no cluster.
+
+READY: mostra a proporção de réplicas CURRENT/DESIRED
+
+UP-TO-DATE: exibe o número de réplicas que foram atualizadas para atingir o estado desejado.
+
+AVAILABLE: exibe quantas réplicas do aplicativo estão disponíveis para seus usuários.
+
+AGE: exibe a quantidade de tempo que o aplicativo está em execução.
+
+Para ver o ReplicaSet criado pela implantação execute:
+```bash
+kubectl get rs
+```
+>Obs: Observe que o nome do ReplicaSet é sempre formatado como [DEPLOYMENT-NAME]-[RANDOM-STRING]. A string é gerada aleatoriamente e usa o pod-template-hash como uma semente para a geração.
+
+Duas colunas importantes deste comando são:
+
+DESIRED: exibe o número desejado de réplicas do aplicativo, que você define ao criar o Deployment. Este é o estado desejado.
+
+CURRENT: exibe quantas réplicas estão em execução no momento.
+
+Para escalar a implantação para 4 réplicas use o comando kubectl scale, seguido do tipo de implantação, nome e número desejado de instâncias:
+```bash
+kubectl scale deployments/kubernetes-bootcamp --replicas=4
+```
+
+Para listar suas implantações novamente, use get deploys:
+```bash
+kubectl get deploys
+```
+
+A alteração deve ter sido aplicada e haverá 4 instâncias da aplicação disponíveis. Em seguida, verifique se o número de Pods mudou:
+```bash
+kubectl get pods -o wide
+```
+
+Deverá haver 4 Pods agora, com diferentes endereços IP. A alteração foi registrada no log de eventos de deploy. Para verificar, use o comando describe:
+```bash
+kubectl describe deployments/kubernetes-bootcamp
+```
+
+### Load balancing
+Em seguida, é esperado que se verifique se o serviço está balanceando a carga do tráfego. Para descobrir o IP e a porta expostos use o service describe aprendido:
+```bash
+kubectl describe services/kubernetes-bootcamp
+```
+
+Crie uma variável de ambiente chamada (NODE_PORT no exemplo) que tenha um valor como a porta do nó:
+```bash
+export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+echo NODE_PORT=$NODE_PORT
+```
+
+Em seguida, faça um curl no IP e na porta expostos. Execute o comando várias vezes:
+```bash
+curl $(minikube ip):$NODE_PORT
+```
+Foi atingido um pod diferente a cada solicitação, demonstrando que o balanceamento de carga está funcionando.
+
+### Scale down
+
+Para reduzir o serviço para 2 réplicas, execute novamente o comando scale:
+
+```bash
+kubectl scale deployments/kubernetes-bootcamp --replicas=2
+```
+
+Liste as implantações para verificar se a alteração foi aplicada com o comando get deploys:
+```bash
+kubectl get deploys
+```
+
+Liste o número de pods, com get pods:
+```bash
+kubectl get pods -o wide
+```
+
+### Atualizando a versão da aplicação
+
+Para atualizar a imagem da aplicação para a versão 2, use o comando set image, seguido do nome da implantação e da nova versão da imagem:
+```bash
+kubectl set image deploys/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+```
+
+O comando notificou a implantação para usar uma imagem diferente para seu aplicativo e iniciou uma atualização contínua. Verifique o status dos novos pods e visualize o antigo finalizando com o comando get pods:
+```bash
+kubectl get pods
+```
+
+### Verifique uma atualização
+Para encontrar o IP e a porta expostos, execute o comando describe service:
+```bash
+kubectl describe services/kubernetes-bootcamp
+```
+
+Crie uma variável de ambiente chamada (NODE_PORT no exemplo) que tenha o valor da porta do nó atribuído:
+```bash
+export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+echo NODE_PORT=$NODE_PORT
+```
+
+Em seguida, faça um curl no IP e porta expostos:
+```bash
+curl $(minikube ip):$NODE_PORT
+```
+
+Toda vez que executar o comando curl, atingirá um Pod diferente. Observe que todos os pods estão executando a versão mais recente (v2).
+Também pode confirmar a atualização executando o comando rollout status:
+
+```bash
+kubectl rollout status deploys/kubernetes-bootcamp
+```
+
+Para visualizar a versão atual da imagem do aplicativo, execute o comando describe pods:
+```bash
+kubectl describe pods
+```
+
+No campo Imagem da saída, verifique se você está executando a versão de imagem mais recente (v2).
+
+<a name="similarTools"/>
 
 ## Ferramentas similares
 - **Docker Swarm:** 
@@ -262,6 +629,8 @@ function App() {
 - **Apache Mesos:**
   - **Vantagens:** se você tiver cargas de trabalho existentes, por exemplo (Hadoop, Kafka, Spark, etc), o Mesos facilita muito o uso dessas cargas de trabalho juntas. Muitos aplicativos modernos de processamento de dados (Hadoop, Kafka, Spark) funcionam muito bem no Mesos. Isso é especialmente bom porque todos eles podem ser executados no mesmo pool de recursos, junto com novos aplicativos empacotados em contêiner. O Mesos é um software que tem sido usado em muitos projetos de grande escala (é usado pelo Twitter, Ebay e AirBnB) e pode suportar centenas de milhares de nós.
   - **Desvantagens:** ao trabalhar com pequenos clusters (menos de uma dúzia de nós), o Mesos pode ser uma solução complicada demais, pois é de baixo nível e projetado para grandes clusters e dimensionamento.
+
+<a name="references"/>
 
 ## Referências
 - Documentação do Kubernetes: https://kubernetes.io/
