@@ -465,7 +465,7 @@ kubectl delete service -l app=kubernetes-bootcamp
 
 Confirme se o serviço foi desativado:
 ```bash
-kubectl obter serviços
+kubectl get services
 ```
 
 Para confirmar que a rota não está mais exposta, dê um curl no IP e porta expostos anteriormente:
